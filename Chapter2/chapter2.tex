@@ -1,0 +1,152 @@
+%!TEX root = ../thesis.tex
+%*******************************************************************************
+%****************************** Second Chapter *********************************
+%*******************************************************************************
+
+\chapter{Marco teórico}
+
+\ifpdf
+    \graphicspath{{Chapter2/Figs/}{Chapter2/Figs/PDF/}{Chapter2/Figs/}}
+\else
+    \graphicspath{{Chapter2/Figs/}{Chapter2/Figs/}}
+\fi
+
+
+\section{Blockchain}
+Blockchain o cadena de bloques es un registro público de transacciones que se
+mantiene mediante una red distribuida de computadores, que no requiere respaldo de
+ninguna autoridad central o una tercera parte y que ofrece un esquema transaccional
+libre de intermediarios, gracias al uso de algoritmos criptográficos. Puede compararse con el libro
+de registros de contabilidad de una empresa en donde se registran todas las entradas
+y salidas de dinero, aunque en este caso hablamos de un libro de acontecimientos
+digitales que no requiere de un intermediario centralizado que identifique y certifique la
+información, sino que está distribuida en múltiples nodos independientes entre sí que
+la registran y la validan sin necesidad de que haya confianza entre ellos.
+
+Esta cadena de bloques (blockchain) consta de tres componentes fundamentales: transacciones,
+registro y un sistema que las verifica y almacena en bloques. Cada bloque se genera a través de un
+software que registra cronológicamente la información sobre cuándo y en qué secuencia han tenido
+lugar las transacciones, de allí deriva su nombre. 
+Esta tecnología permite que se realicen las transferencias electrónicas de una manera segura sin la
+presencia de un tercero de confianza, dando solución a la principal barrera técnica de las últimas
+décadas para los desarrolladores tecnológicos, el problema del doble gasto.
+
+Por fuera de Blockchain, las transferencias electrónicas requieren intermediarios financieros para
+dar confianza y seguridad a la transacción. Los intermediarios financieros generan confianza y
+seguridad, preservando un registro único y centralizado de las operaciones electrónicas que permite
+controlar los saldos de los titulares de cuentas y, en última instancia, garantizar la autenticidad
+de una transacción. Sin intermediarios, las unidades de valor electrónicas -pesos o dólares- pueden
+ser copiados y usados dos veces, tal como cualquier documento digital puede ser copiado
+indefinidamente. En Blockchain, una vez introducida la información, no puede ser borrada o
+modificada, solo se podrán añadir nuevos registros y no será legitimada a menos que la mayoría de
+los actores se pongan de acuerdo para hacerlo.
+
+Se podría entender esta tecnología con fundamento en sus tres características generales de la
+siguiente forma: i) Blockchain es una tecnología "sin confianza", lo que significa que por primera
+vez en la historia, intercambios de valor a través de una red de computadores pueden ser
+verificados, monitoreados y asegurados sin la presencia de un tercero de confianza o
+de una institución central; ii) es una tecnología de autenticación y verificación, que permite de
+forma más eficiente las transferencias de títulos y la verificación de propiedad y iii) por ser una
+tecnología sin fronteras y sin fricción, puede proporcionar una más económica y rápida
+infraestructura para el intercambio de unidades de valor.
+
+Esta tecnología surgió como el soporte tecnológico del Bitcoin y luego fue adoptada por múltiples
+sectores en donde existía la necesidad de un registro o de intercambio de valor, como se verá más
+adelante. Para comprender el funcionamiento general del Blockchain, se explicará la primera versión
+que sirvió de base para los desarrollos en los que se está trabajando en la actualidad.
+
+
+\subsection{¿Cómo funciona?}
+Veremos más sobre el funcionamiento de Ethereum en otros capítulos. Aquí se intentará explicar de 
+manera generalizada el funcionamiento de una blockchain.
+
+Para generar un contexto, supondremos que Alpha quiere transferir a Beta una determinada
+cantidad de unidades de valor (Alguna criptomoneda, pesos, dólares, etc.) y que ambos tienen acceso
+a una billetera o un monedero en el celular, un computador o una web que les permite enviar o
+recibir la moneda. Cuando Alpha decide gastar sus unidades de valor, lo que realmente está haciendo
+es enviar una instrucción de cambio a la base de datos informando que parte de sus unidades de
+valor ahora pertenecen a Beta. Esta instrucción es difundida en la red verificando que Alpha tiene
+recursos para pagar y, si todo se encuentra correcto, se compila con otras transacciones
+en un bloque con información relativa a los últimos diez minutos.
+Este bloque mezcla la información de las direcciones de las partes involucradas en cada
+transacción, la cantidad de unidades de valor en movimiento y una marca de tiempo, y luego las
+procesa a través de una función llamada Hash. Esta función es un algoritmo criptográfico, que se
+encarga de condensar en un único digito de 64 caracteres información de cualquier extensión.
+Por ejemplo, el hash (encriptado con el algoritmo SHA-256) para la palabra “blockchain” sería
+EF7797E13D3A75526946A3BCF00DAEC9FC9C9C4D51DDC7CC5DF888F74DD434D1 y el de “Blockchain”
+625DA44E4EAF58D61CF048D168AA6F5E492DEA166D8BB54EC06C30DE07DB57E1. Preste especial atención que ante
+cambios como la capitalización de una letra o la longitud del texto, el hash es completamente
+diferente.
+
+Este hash se combina con la solución-hash del bloque anterior, y se convierte en el encabezado del
+bloque nuevo que se encuentra en validación. A su vez este es la base de un problema matemático que
+se resuelve usando de nuevo la función Hash. La respuesta a este acertijo es solucionado por la red
+en un proceso de prueba y error. Cuando finalmente algún nodo de la red encuentra la solución, esta
+es compartida con el resto para su validación, en un proceso llamado “proof of work” (prueba de
+trabajo). Después que ha sido aprobada por la mayoría de la red, el bloque es añadido a la cadena y 
+con ello todas las transacciones contenidas en él, incluido el pago de Alpha hacia Beta.
+
+La blockchain establece la confianza entre dos partes en una transacción a través de un libro de 
+contabilidad público descentralizado y un mecanismo criptográfico que garantiza que las 
+transacciones no pueden cambiarse después de materializadas.
+
+\section{Ethereum}
+Ethereum aparece a finales del año 2013 en un paper publicado por Vitalik Buterin con el objetivo
+de proveer un sistema descentralizado capaz de correr aplicaciones casi sin límite de capacidades.
+
+Ethereum es una red peer-to-peer (p2p) de máquinas virtuales que cualquier desarrollador puede
+utilizar para ejecutar aplicaciones distribuidas (dApps). Estos programas informáticos pueden ser
+cualquier cosa, pero la red está optimizada para llevar a cabo reglas que se ejecutan mecánicamente
+cuando se cumplen ciertas condiciones, como un contrato. Ethereum utiliza su propia blockchain
+pública descentralizada para almacenar, ejecutar y proteger criptográficamente estos contratos. 
+Cada computadora de su red descarga una pequeña máquina virtual para sincronizarse con la
+blockchain de Ethereum y volver a estar disponible para ejecutar contratos. Esta red distribuida de
+computadoras proporciona convenientemente la seguridad, confiabilidad y potencia de computación
+necesarias para llevar a cabo los arreglos diseñados. Por supuesto, esta red de consenso no es
+gratuita ni privada, por lo que los desarrolladores sólo la utilizan para llegar a un consenso
+sobre los resultados y cuando sus datos pueden ser públicos.
+
+La intención de Ethereum es crear un protocolo alternativo para la construcción de dApps,
+proporcionando un conjunto diferente de compensaciones que se cree serán muy útiles para una gran
+clase de aplicaciones descentralizadas, con especial énfasis en situaciones en las que el tiempo de
+desarrollo rápido, la seguridad para aplicaciones pequeñas y poco utilizadas, y la capacidad de las
+ diferentes aplicaciones para interactuar muy eficientemente, son importantes.
+Ethereum hace esto construyendo lo que es esencialmente la última capa fundacional abstracta: una
+blockchain con un lenguaje de programación Turing completo integrado, que permite a cualquiera
+escribir contratos inteligentes y aplicaciones descentralizadas donde puede crear sus propias
+reglas arbitrarias para la propiedad, formatos de transacción y funciones de transición de estado.
+
+
+\subsection{Fíat Currency (dinero fiduciario)}
+Comúnmente se dice que el bitcoin no está respaldado por nada, y eso es cierto. Las monedas fiat
+modernas tampoco están respaldadas por nada, sin embargo, son diferentes: endosados
+por un gobierno, una moneda fiduciaria es mantenida por defecto por cualquiera que pague impuestos
+y compre bonos del Estado. Algunas ventas internacionales de materias primas están denominadas en
+dólares, también (por ejemplo, el petróleo) dando a la gente otra razón para retener dólares.
+
+En el caso de las criptomonedas, persisten los problemas de adopción. Hoy en día, estos tokens
+digitales siguen siendo una capa de pago público, rápido y seguro en la parte superior del sistema
+de dinero fiduciario existente; un despliegue experimental que podría algún día crecer para
+reemplazar los pagos centralizados utilizadas hoy en día por empresas como Visa y MasterCard.
+
+Se vislumbran grandes posibilidades en el horizonte, ya que los gobiernos y el sector privado s
+encuentran en una situación difícil. Los inversores institucionales empiezan a crear grandes
+mercados para los productos y servicios financieros denominadas en criptomonedas. Los bancos
+centrales pueden incluso adoptar esta tecnología. Al menos un país ha emitido un dólar digital
+utilizando el software Bitcoin: Barbados. Otros están investigando activamente el prospecto.
+
+
+\subsubsection{Ether}
+Hoy en día, Bitcoin (denotado por el símbolo BTC) es utilizado por personas, gobiernos y empresas
+para transferir valor y comprar productos o servicios. Cada vez que envían bitcoins, pagan una
+pequeña cuota a la red, que está denominada en bitcoins. Ether, denotado por el símbolo ETH, se
+puede utilizar de forma similar. Para entender el camino a seguir, se necesita saber algunas cosas.
+
+
+\subsection{Protocolos}
+
+\subsection{Smart Contracts}
+
+\subsection{Solidity programming language}
+
+\subsection{Base de datos distribuida, ¿Dónde están los datos?}
