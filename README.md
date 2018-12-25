@@ -3,7 +3,6 @@ Ethereum - Smart Contracts thesis
 
 ## Authors
 *   Echevarria Leandro
-*   Maquirriain Rodrigo
 
 --------------------------------------------------------------------------------
 
