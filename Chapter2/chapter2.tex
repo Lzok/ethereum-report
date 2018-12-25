@@ -142,11 +142,106 @@ para transferir valor y comprar productos o servicios. Cada vez que envían bitc
 pequeña cuota a la red, que está denominada en bitcoins. Ether, denotado por el símbolo ETH, se
 puede utilizar de forma similar. Para entender el camino a seguir, se necesita saber algunas cosas.
 
+Primero, el ether tiene otro uso: puede pagar para ejecutar programas en la red de Ethereum.
+Estos programas pueden transferir el ether ahora, o en el futuro, o cuando se cumplan ciertas
+condiciones (especificadas en los contratos).
+Debido a su capacidad de pagar por la ejecución de transacciones en el futuro, el ether puede
+también ser considerado un producto básico, como el combustible para que la red ejecute
+aplicaciones y servicios. Por lo tanto, tiene una dimensión adicional de valor intrínseco sobre los
+bitcoins; no es sólo una reserva de valor.
+
+Hoy en día, el abrumador uso de las monedas fiduciarias podría sugerir que
+las criptomonedas son "peor dinero", es decir, más propensas a la inutilidad a largo plazo.
+Y sin embargo, los bitcoins y el ether son famosamente acaparados por los poseedores, e incluso
+mantenidos en un fideicomiso por al menos una compañía hasta el momento de escribir esto:
+Grayscale, una subsidiaria de Digital Currency Group es un buen ejemplo.
+Mientras tanto, los bancos centrales de Occidente experimentan con tipos de interés cercanos a cero
+y flexibilización cuantitativa, también conocida como impresión de dinero, en una situación cada
+vez más peligrosa y desesperada por mantener la inflación y la deflación bajo control.
+
+Con la recompensa de bitcoin reduciéndose a la mitad cada cuatro años, la política monetaria
+mundial se ve afectada. En general la incertidumbre económica, y la disminución de la confianza en
+las monedas fiduciarias, enormes sumas de dinero latente en criptomonedas "acaparadas" están siendo
+arrastradas al mercado por los precios más altos del servicio de demanda genuina. Esto se refleja
+en los precios cada vez mayores de la mayoría de los tokens criptográficos, por muy volátiles que
+sean sus precios intradía. Este acto de equilibrio entre acaparadores, especuladores, y
+"derrochadores" crea un mercado próspero y saludable para la criptomoneda, y sugiere que
+los criptokens como una clase de activos ya están sirviendo a los propósitos del dinero, y mucho
+más.
+
 
 \subsection{Protocolos}
+Por definición, un protocolo en informática y telecomunicaciones es un sistema de normas que
+regulan la comunicación entre dos o más sistemas que se transmiten información a través de 
+diversos medios físicos.
+
+Los protocolos pueden variar en gran manera, sin embargo, suelen tener al menos una de las 
+siguientes propiedades:
+
+\begin{itemize}
+\item Detección de la conexión física subyacente.
+\item Negociación de características de conexión.
+\item Política de corrección de errores.
+\item Establecimiento de la conexión y su término.
+\item Qué hacer en caso de pérdida repentina de la conectividad.
+\item Estrategias de seguridad o cifrado.
+\item Formato de los mensajes.
+\end{itemize}
+
+
+\subsubsection{Ethereum Wire Protocol}
+%@TODO
 
 \subsection{Smart Contracts}
+El término smart contract hace referencia a cualquier contrato que se ejecuta por sí mismo
+automáticamente sin que medien terceros entre los participantes individuales. Los smart contracts
+se escriben como programas informáticos en lugar de como lenguaje legal sobre documentos impresos.
+El programa puede definir reglas y consecuencias estrictas del mismo modo que lo haría un documento
+legal tradicional, pero a diferencia de los contratos tradicionales, también puede tomar
+información como input, procesarla según las reglas establecidas en el contrato y adoptar cualquier
+medida que se requiera como resultado de ello.
+
+El concepto lo definió en 1994 el criptógrafo Nick Szabo, pero en la práctica no se hizo realidad
+porque la infraestructura tecnológica necesaria para apoyarlo aún no existía. En la actualidad, con
+la llegada de los protocolos de cifrado y el blockchain la situación cambió y, como resultado, la
+idea ha vuelto a renacer.
+
+En resumen, los contratos inteligentes son scripts modulares, repetibles y autónomos que
+normalmente se ejecutan en una blockchain y representan promesas unilaterales de proporcionar una
+tarea informática determinada. Estos scripts se almacenan en la blockchain, en una dirección
+específica que se determina cuando se implementan los contratos en la blockchain. Cuando se produce
+un evento contemplado en el contrato, se envía una transacción a esa dirección y la máquina virtual
+distribuida ejecuta los códigos de operación del script (o cláusulas) utilizando los datos enviados
+con la transacción.
+
+Los contratos inteligentes pueden estar codificados de modo que reflejen cualquier tipo de lógica
+empresarial basada en los datos: desde acciones tan sencillas como votar por una publicación en un
+foro hasta acciones con un mayor nivel de complejidad, como garantías de préstamos y contratos de
+futuros, así como acciones sumamente complejas como la fijación de prioridades de pago en una nota
+estructurada.
+
 
 \subsection{Solidity programming language}
+Solidity es un lenguaje de programación de alto nivel "contract-oriented" usado para escribir
+programas (smart contracts), que serán ejecutados por la EVM (Ethereum Virtual Machine). Su
+sintaxis es muy similar a lenguajes como JavaScript o C.
+Este lenguaje es una mezcla de convenciones de networking, lenguaje ensamblador, y desarrollo web.
+
+Veremos más sobre él en capítulos posteriores.
 
 \subsection{Base de datos distribuida, ¿Dónde están los datos?}
+En Ethereum, la red es la base de datos. Todos los datos de los usuarios están almacenados en 
+cada nodo de la red. Todas las transacciones en Ethereum se almacenan en la blockchain, un
+historial cambios de estado es almacenados en cada nodo de Ethereum.
+
+Cuando un usuario paga por el tiempo de computación en la red Ethereum, esto incluye el costo
+de ejecutar la transacción y para el almacenamiento de los datos incluidos en su contrato
+inteligente. (Si el contrato se hace más pequeño después de ejecutarse, el usuario recibirá un
+reembolso parcial en forma de tarifa de transacción reducida.)
+
+Tan pronto como se ejecute el smart contract y la tarifa en ether sea pagada, los datos serán
+incluídos en el siguiente bloque. Debido a que la red Ethereum requiere que todos los nodos
+mantengan el estado de todos los contratos, cualquier nodo puede consultar a la base de datos
+local. Esto es sumamente poco escalable!
+
+
