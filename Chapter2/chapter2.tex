@@ -254,7 +254,7 @@ sin necesariamente tener que montar un nodo Ethereum en nuestra máquina.
 
 \begin{figure}[htbp!] 
 \centering    
-\includegraphics[width=0.8\textwidth]{metamask-main}
+\includegraphics[width=0.7\textwidth]{metamask-main}
 \caption[MetaMaskMain]{Así luce MetaMask recién instalado}
 \label{fig:metamask-main}
 \end{figure}
@@ -270,7 +270,82 @@ como la red principal de Ethereum (lo que llamaríamos un entorno de producción
 \label{fig:metamask-networks}
 \end{figure}
 
-\subsection{Solidity y compiladores}
+\subsection{Remix (remix.ethereum.org)}
+Remix es una potente herramienta open source que nos permite escribir contratos en código
+Solidity desde el browser, testearlos, deployarlos, debuggearlos, ver sus imputs y sus outputs
+entre otras varias acciones. Es practicamente una IDE completa.
+
+Está escrita en JavaScript y se encuentra en estado Alpha.
+
 \subsection{JavaScript}
+JavaScript es un lenguaje de programación interpretado, dinámico, de alto nivel y sin
+tipos. Estandarizado por la especificación de lenguaje ECMAScript, fue diseñado originalmente para
+ser utilizado del lado cliente y luego extendido para su uso del lado servidor. Es una de las tres
+tecnologías fundamentales de la Web, junto con HTML y CSS. Su versión actual es ECMAScript 2018
+(todavía no soportado "out of the box" por los navegadores).
+
+
 \subsection{Node.js}
+Node.js es un entorno de ejecución multiplataforma para el desarrollo de una variedad de
+herramientas y aplicaciones del lado servidor construido con el motor de JavaScript V8 de Chrome.
+Aunque no es un framework JavaScript, muchos de sus módulos básicos están escritos en JavaScript y
+los desarrolladores pueden también escribir nuevos módulos con él. Tiene una arquitectura basada en
+eventos y está enfocado en la optimización de escalabilidad y rendimiento para aplicaciones web que
+utilicen un fuerte procesamiento asíncrono de entrada/salida. Desarrollado inicialmente por Ryan
+Dahl en el año 2009 (Ryan ya no forma parte del proyecto), se encuentra actualmente en las
+versiones 10.14.0 (LTS) y 11.5.0 (Current).
+
+Para el presente trabajo utilizaremos la versión LTS (Long Term Support).
+
+
 \subsubsection{Módulos utilizados}
+En la siguiente sección se listarán y describirán los módulos de Node.js utilizados con el fin de
+compilar, testear, deployar contratos y/o conectarse a una red Ethereum desde el entorno de
+ejecución de Node.js.
+
+\subsubsubsection{Mocha}
+Mocha será el test runner en nuestra app Node. Nos da la posibilidad de crear tanto tests síncronos
+como asíncronos, nos proporciona muchas utilidades para la ejecución y el reporte de los tests.
+
+En este punto cabe destacar que el smart contract está siendo testeado localmente, es una etapa
+previa a deployarlo y testearlo en una red de prueba de Ethereum como puede ser la red Rinkeby.
+
+Su instalación es muy sencilla, simplemente se instala con el comando `npm install mocha`.
+
+
+\subsubsubsection{Assert}
+El módulo assert es un módulo nativo de Node, es decir, con el simple hecho de tener instalado
+Node tendremos acceso a este módulo. Assert nos ayuda en la etapa de test junto con Mocha, ya que 
+nos proporciona un set de "assertions" que usaremos para testear incongruencias en el código
+y los resultados que éste nos proporcione.
+
+\subsubsubsection{Web3.js}
+Web3.js es una colección de librerías que nos permiten interactuar con un nodo de Ethereum 
+ya sea de manera local o remota, usando conexiones HTTP o IPC.
+
+Tanto Web3.js como MetaMask sirven para llegar hasta un nodo de Ethereum, pero podemos separar 
+a ambos en dos grupos: MetaMask es para que los usuarios NO desarrolladores interactúen con 
+Ethereum mientras que Web3.js funciona como "puerta de entrada" para que los desarrolladores
+puedan interactuar con Ethereum desde sus aplicaciones.
+
+\begin{figure}[htbp!] 
+\centering    
+\includegraphics[width=0.9\textwidth]{metaweb3}
+\caption[MetaWeb3]{Diagrama que representa el grupo de usuarios de cada herramienta}
+\label{fig:metamask-web3}
+\end{figure}
+
+\subsubsubsection{Ganache CLI}
+
+Siguiendo con el objetivo de testear nuestra aplicación y los contratos inteligentes, es el turno 
+de Ganache. Ganache CLI (Command Line Interface) es parte de una suite de herramientas para el 
+desarrollo de Ethereum llamada Truffle. Cabe destacar que pese a su gran adopción por parte de la 
+comunidad, Truffle aún no se encuentra en una versión completamente estable por lo que es común
+encontrarse con alguna de las herramientas con un comportamiento que no es el correcto.
+
+Por su parte, Ganache nos proporciona una "blockchain personal" para deployar y testear contratos.
+Es decir, nos brinda una blockchain local en tiempo de ejecución para que podamos probar allí
+nuestros contratos.
+
+Ganache utiliza Ethereumjs para simular un comportamiento de cliente completo y hacer más fácil,
+sencillo y seguro el desarrollo de apps Ethereum.
