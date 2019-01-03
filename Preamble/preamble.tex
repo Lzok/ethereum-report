@@ -62,7 +62,7 @@
 % *************************** Graphics and figures *****************************
 
 %\usepackage{rotating}
-%\usepackage{wrapfig}
+\usepackage{wrapfig}
 
 % Uncomment the following two lines to force Latex to place the figure.
 % Use [H] when including graphics. Note 'H' instead of 'h'
@@ -139,9 +139,9 @@
 
 
 % ********************** TOC depth and numbering depth *************************
-
-\setcounter{secnumdepth}{4}
-\setcounter{tocdepth}{4}
+\newcommand{\subsubsubsection}[1]{\paragraph{#1}\mbox{}\\}
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5}
 
 
 % ******************************* Nomenclature *********************************

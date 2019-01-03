@@ -74,9 +74,9 @@ procesa a través de una función llamada Hash. Esta función es un algoritmo cr
 encarga de condensar en un único digito de 64 caracteres información de cualquier extensión.
 Por ejemplo, el hash (encriptado con el algoritmo SHA-256) para la palabra “blockchain” sería
 EF7797E13D3A75526946A3BCF00DAEC9FC9C9C4D51DDC7CC5DF888F74DD434D1 y el de “Blockchain”
-625DA44E4EAF58D61CF048D168AA6F5E492DEA166D8BB54EC06C30DE07DB57E1. Preste especial atención que ante
-cambios como la capitalización de una letra o la longitud del texto, el hash es completamente
-diferente.
+625DA44E4EAF58D61CF048D168AA6F5E492DEA166D8BB54EC06
+C30DE07DB57E1. Preste especial atención que ante cambios como la capitalización de una letra o la
+longitud del texto, el hash es completamente diferente.
 
 Este hash se combina con la solución-hash del bloque anterior, y se convierte en el encabezado del
 bloque nuevo que se encuentra en validación. A su vez este es la base de un problema matemático que
@@ -111,6 +111,13 @@ proporcionando un conjunto diferente de compensaciones que se cree serán muy ú
 clase de aplicaciones descentralizadas, con especial énfasis en situaciones en las que el tiempo de
 desarrollo rápido, la seguridad para aplicaciones pequeñas y poco utilizadas, y la capacidad de las
  diferentes aplicaciones para interactuar muy eficientemente, son importantes.
+ 
+\begin{wrapfigure}{l}{0.7\textwidth}
+\includegraphics[width=0.7\linewidth]{ethereum-nodes} 
+\caption[EthereumNodes]{Los Nodos de Ethereum se interconectan entre sí (P2P)}
+\label{fig:ethereum-nodes}
+\end{wrapfigure} 
+ 
 Ethereum hace esto construyendo lo que es esencialmente la última capa fundacional abstracta: una
 blockchain con un lenguaje de programación Turing completo integrado, que permite a cualquiera
 escribir contratos inteligentes y aplicaciones descentralizadas donde puede crear sus propias
@@ -169,6 +176,16 @@ sean sus precios intradía. Este acto de equilibrio entre acaparadores, especula
 los criptokens como una clase de activos ya están sirviendo a los propósitos del dinero, y mucho
 más.
 
+El siguiente cuadro cortesía de https://www.cryptocurrencychart.com/ nos muestra el precio del 
+bitcoin y del ether a lo largo del año 2018. Una conclusión rápida que vemos es que el ether es
+bastante más estable en precio que el bitcoin.
+
+\begin{figure}[htbp!] 
+\centering    
+\includegraphics[width=0.9\textwidth]{ethbtc2018}
+\caption[EthBtc2018]{Cuadro comparativo de precios entre Bitcoin y Ether durante 2018}
+\label{fig:eth-btc-2018}
+\end{figure}
 
 \subsection{Protocolos}
 Por definición, un protocolo en informática y telecomunicaciones es un sistema de normas que
@@ -245,3 +262,109 @@ mantengan el estado de todos los contratos, cualquier nodo puede consultar a la 
 local. Esto es sumamente poco escalable!
 
 
+
+\section{Herramientas y tecnologías utilizadas}
+\subsection{MetaMask}
+MetaMask es una extensión del navegador, en este caso Google Chrome, la cual nos hace un puente
+que permite conectarnos a las redes descentralizadas de Ethereum y visitar dApps en el navegador
+sin necesariamente tener que montar un nodo Ethereum en nuestra máquina.
+
+\begin{figure}[htbp!] 
+\centering    
+\includegraphics[width=0.7\textwidth]{metamask-main}
+\caption[MetaMaskMain]{Así luce MetaMask recién instalado}
+\label{fig:metamask-main}
+\end{figure}
+
+También en la siguiente figura podemos ver las opciones que nos ofrece MetaMask en cuanto 
+a redes Ethereum para conectarnos. Tenemos un vasto catálogo, tanto redes de prueba, locales
+como la red principal de Ethereum (lo que llamaríamos un entorno de producción).
+
+\begin{figure}[htbp!] 
+\centering    
+\includegraphics[width=0.8\textwidth]{metamask-networks}
+\caption[MetaMaskNetworks]{Opciones de redes Ethereum que nos ofrece MetaMask}
+\label{fig:metamask-networks}
+\end{figure}
+
+\subsection{Remix (remix.ethereum.org)}
+Remix es una potente herramienta open source que nos permite escribir contratos en código
+Solidity desde el browser, testearlos, deployarlos, debuggearlos, ver sus imputs y sus outputs
+entre otras varias acciones. Es practicamente una IDE completa.
+
+Está escrita en JavaScript y se encuentra en estado Alpha.
+
+\subsection{JavaScript}
+JavaScript es un lenguaje de programación interpretado, dinámico, de alto nivel y sin
+tipos. Estandarizado por la especificación de lenguaje ECMAScript, fue diseñado originalmente para
+ser utilizado del lado cliente y luego extendido para su uso del lado servidor. Es una de las tres
+tecnologías fundamentales de la Web, junto con HTML y CSS. Su versión actual es ECMAScript 2018
+(todavía no soportado "out of the box" por los navegadores).
+
+
+\subsection{Node.js}
+Node.js es un entorno de ejecución multiplataforma para el desarrollo de una variedad de
+herramientas y aplicaciones del lado servidor construido con el motor de JavaScript V8 de Chrome.
+Aunque no es un framework JavaScript, muchos de sus módulos básicos están escritos en JavaScript y
+los desarrolladores pueden también escribir nuevos módulos con él. Tiene una arquitectura basada en
+eventos y está enfocado en la optimización de escalabilidad y rendimiento para aplicaciones web que
+utilicen un fuerte procesamiento asíncrono de entrada/salida. Desarrollado inicialmente por Ryan
+Dahl en el año 2009 (Ryan ya no forma parte del proyecto), se encuentra actualmente en las
+versiones 10.14.0 (LTS) y 11.5.0 (Current).
+
+Para el presente trabajo utilizaremos la versión LTS (Long Term Support).
+
+
+\subsubsection{Módulos utilizados}
+En la siguiente sección se listarán y describirán los módulos de Node.js utilizados con el fin de
+compilar, testear, deployar contratos y/o conectarse a una red Ethereum desde el entorno de
+ejecución de Node.js.
+
+\subsubsubsection{Mocha}
+Mocha será el test runner en nuestra app Node. Nos da la posibilidad de crear tanto tests síncronos
+como asíncronos, nos proporciona muchas utilidades para la ejecución y el reporte de los tests.
+
+En este punto cabe destacar que el smart contract está siendo testeado localmente, es una etapa
+previa a deployarlo y testearlo en una red de prueba de Ethereum como puede ser la red Rinkeby.
+
+Su instalación es muy sencilla, simplemente se instala con el comando `npm install mocha`.
+
+
+\subsubsubsection{Assert}
+El módulo assert es un módulo nativo de Node, es decir, con el simple hecho de tener instalado
+Node tendremos acceso a este módulo. Assert nos ayuda en la etapa de test junto con Mocha, ya que 
+nos proporciona un set de "assertions" que usaremos para testear incongruencias en el código
+y los resultados que éste nos proporcione.
+
+\subsubsubsection{Web3.js}
+Web3.js es una colección de librerías que nos permiten interactuar con un nodo de Ethereum 
+ya sea de manera local o remota, usando conexiones HTTP o IPC.
+
+Tanto Web3.js como MetaMask sirven para llegar hasta un nodo de Ethereum, pero podemos separar 
+a ambos en dos grupos: MetaMask es para que los usuarios NO desarrolladores interactúen con 
+Ethereum mientras que Web3.js funciona como "puerta de entrada" para que los desarrolladores
+puedan interactuar con Ethereum desde sus aplicaciones.
+
+\begin{figure}[htbp!] 
+\centering    
+\includegraphics[width=0.9\textwidth]{metaweb3}
+\caption[MetaWeb3]{Diagrama que representa el grupo de usuarios de cada herramienta}
+\label{fig:metamask-web3}
+\end{figure}
+
+\subsubsubsection{Ganache CLI}
+
+Siguiendo con el objetivo de testear nuestra aplicación y los contratos inteligentes, es el turno 
+de Ganache. Ganache CLI (Command Line Interface) es parte de una suite de herramientas para el 
+desarrollo de Ethereum llamada Truffle. Cabe destacar que pese a su gran adopción por parte de la 
+comunidad, Truffle aún no se encuentra en una versión completamente estable por lo que es común
+encontrarse con alguna de las herramientas con un comportamiento que no es el correcto.
+
+Por su parte, Ganache nos proporciona una "blockchain personal" para deployar y testear contratos.
+Es decir, nos brinda una blockchain local en tiempo de ejecución para que podamos probar allí
+nuestros contratos.
+
+Ganache utiliza Ethereumjs para simular un comportamiento de cliente completo y hacer más fácil,
+sencillo y seguro el desarrollo de apps Ethereum.
+
+Su instalación se da mediante el comando `npm install -g ganache-cli`
