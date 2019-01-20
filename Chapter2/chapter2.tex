@@ -206,8 +206,92 @@ siguientes propiedades:
 \end{itemize}
 
 
-\subsubsection{Ethereum Wire Protocol}
-%@TODO
+\subsubsection{devp2p Application Protocol}
+devp2p es un protocolo de red de capa de aplicación para la comunicación entre nodos de una red
+peer-to-peer. Los nodos pueden soportar cualquier número de subprotocolos. devp2p se encarga de la
+negociación de los subprotocolos soportados en ambos lados y transmite sus mensajes a través de una
+única conexión.
+
+Los nodos se comunican enviando mensajes utilizando el protocolode transporte RLPx. Los nodos son
+libres de anunciar y aceptar conexiones en cualquier puerto TCP que deseen, sin embargo, un puerto
+por defecto en el que la conexión puede ser escuchada y realizada será el 30303. Aunque TCP
+proporciona un medio orientado a la conexión, los nodos devp2p se comunican en términos de
+paquetes. RLPx proporciona facilidades para enviar y recibir paquetes. 
+
+Los nodos devp2p encuentran pares a través del protocolo de descubrimiento DHT. Las conexiones
+entre pares también pueden iniciarse suministrando el punto final de un par a una API RPC
+específica del cliente.
+
+\subsubsection{RLPx Transport Protocol}
+Esta especificación define el protocolo de transporte RLPx, un protocolo de transporte basado en
+TCP utilizado para la comunicación entre nodos Ethereum. El protocolo funciona con tramas cifradas
+de contenido arbitrario, aunque normalmente se utiliza para llevar el protocolo de aplicación
+devp2p.
+
+
+\subsubsection{Node Discovery Protocol v4 DHT}
+Esta especificación define el protocolo de descubrimiento de nodos versión 4, un DHT similar a
+Kademlia que almacena información sobre los nodos Ethereum. Se eligió la estructura Kademlia porque
+produce una topología de bajo diámetro.
+
+Cada nodo tiene una identidad criptográfica, una clave en la curva elíptica secp256k1. La clave
+pública del nodo sirve como su identificador o 'ID de nodo'.
+
+La 'distancia' entre dos IDs de nodo es la exclusiva de bits o en los hashes de las claves
+públicas, tomados como el número.
+
+\begin{figure}[htbp!] 
+\centering    
+\includegraphics[width=0.8\textwidth]{distance-nodes}
+\caption[DistanceNodes]{Ecuación de distancia entre nodos.}
+\label{fig:distance-nodes}
+\end{figure}
+
+\subsubsubsection{Curva elíptica secp256k1}
+secp256k1 se refiere a los parámetros de la curva elíptica utilizada en la criptografía de clave
+pública de Bitcoin, y se define en "Standards for Efficient Cryptography" (SEC). Actualmente
+Bitcoin utiliza secp256k1 con el algoritmo ECDSA, aunque la misma curva con las mismas claves
+públicas/privadas puede utilizarse en otros algoritmos como Schnorr.
+
+secp256k1 casi nunca se usaba antes de que Bitcoin se hiciera popular, pero ahora está ganando
+popularidad debido a sus propiedades. Las curvas más utilizadas tienen una estructura aleatoria,
+pero secp256k1 se construyó de una manera especial no aleatoria que permite un cálculo
+especialmente eficiente. Como resultado, a menudo es más de un 30\% más rápido que otras curvas si
+la implementación está suficientemente optimizada. Además, a diferencia de las populares curvas
+NIST, las constantes de secp256k1 se seleccionaron de forma predecible, lo que reduce
+significativamente la posibilidad de que el creador de la curva insertara cualquier tipo de
+backdoor en la curva.
+
+\begin{figure}[htbp!] 
+\centering    
+\includegraphics[width=0.7\textwidth]{secp256k1-example}
+\caption[secp256k1]{Ejemplo de cómo luce la curva}
+\label{fig:secp256k1-example}
+\end{figure}
+
+\subsubsection{Kademlia}
+Kademlia es un protocolo de comunicación de hash tables distribuido (DHT) para redes
+descentralizadas peer-to-peer.
+
+La red Kademlia está formada por una amplia gama de nodos que interactúan entre sí a través del
+Protocolo de Datagramas de Usuario (UDP). Cada nodo de la red está identificado por un número
+binario único llamado ID de nodo. El ID de nodo se utiliza para localizar valores (bloque de datos)
+en el algoritmo Kademlia. Los valores también están interconectados dentro de una red Kademlia con
+una clave de valor específica, un número binario de longitud fija.
+
+La estructura descentralizada de Kademlia aumenta la resistencia a los ataques de denegación de
+servicio porque incluso si se comprometen múltiples nodos, el efecto sobre la disponibilidad de la
+red sería muy limitado, ya que la red se recuperará tejiendo alrededor de estos nodos afectados.
+
+El algoritmo de Kademlia está presente en algunas redes públicas reconocidas como IPFS, BitTorrent,
+Kad Network, Retroshare, Tox. Cabe mencionar que estas redes son incompatibles entre si.
+
+\begin{figure}[htbp!] 
+\centering    
+\includegraphics[width=0.8\textwidth]{kademlia-search}
+\caption[KademliaSearch]{Un ejemplo de búsqueda en el Kademlia (nodo 0011 buscando el nodo 1110)}
+\label{fig:kademlia-search}
+\end{figure}
 
 \subsection{Smart Contracts}
 El término smart contract hace referencia a cualquier contrato que se ejecuta por sí mismo
@@ -368,3 +452,44 @@ Ganache utiliza Ethereumjs para simular un comportamiento de cliente completo y 
 sencillo y seguro el desarrollo de apps Ethereum.
 
 Su instalación se da mediante el comando `npm install -g ganache-cli`
+
+\subsubsubsection{React}
+ReactJS es una librería JavaScript de código abierto que se utiliza para crear interfaces de
+usuario para aplicaciones SPA (Single Page Applications). Se utiliza para manejar la capa de vista
+para aplicaciones tanto web como móviles. React también nos permite crear componentes de interfaz
+de usuario reutilizables. Fue creado por Jordan Walke, un ingeniero de software que trabaja para
+Facebook. React fue deployado primero en el news feeds de Facebook en 2011 y en Instagram en 2012.
+ 
+React permite a los desarrolladores crear grandes aplicaciones web que pueden cambiar los datos 
+sin necesidad de recargar la página. El objetivo principal de React es ser rápido, escalable y
+sencillo. Sólo funciona en interfaces de usuario en la aplicación. Esto corresponde a la vista en
+el modelo MVC. Puede utilizarse con una combinación de otras bibliotecas o frameworks de
+JavaScript, como Angular JS en MVC.
+
+
+\subsubsubsection{React Router}
+React Router es la librería estándar de react para "rutear" la aplicación. Mantiene la interfaz
+de usuario sincronizada con la URL. 
+
+Tiene una API sencilla con potentes funciones como lazy loading, la correspondencia
+dinámica de rutas y la gestión de transición de ubicación integrada. 
+
+
+\subsubsubsection{Webpack (junto con plugins)}
+Webpack es un empaquetador de módulos. Webpack puede encargarse de la empaquetación junto con un
+task runner separado. Sin embargo, la línea entre el bundler y task runner se ha vuelto borrosa
+gracias a los plugins webpack desarrollados por la comunidad. A veces estos plugins se utilizan
+para realizar tareas que normalmente se realizan fuera de webpack, como la limpieza del directorio
+de compilación o la implementación de la compilación.
+
+React y el feature de Hot Module Replacement (HMR) ayudaron a popularizar Webpack y lo esto llevó a
+su uso en otros entornos, como Ruby on Rails. A pesar de su nombre, Webpack no se limita sólo a la
+web. También puede combinarse con otros objetivos.
+
+
+\subsubsubsection{Babel (junto con plugins)}
+Babel es un compilador de código JavaScript que nos permite transformar nuestro código JS de última
+generación (o con funcionalidades extras) a JS que cualquier navegador o versión de Node.js
+entienda.
+
+Babel funciona mediante plugins para que le indiquemos que cosas queremos que transforme.
