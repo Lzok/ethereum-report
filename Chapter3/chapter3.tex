@@ -8,7 +8,7 @@
 \ifpdf
     \graphicspath{{Chapter3/Figs/Raster/}{Chapter3/Figs/PDF/}{Chapter3/Figs/}}
 \else
-    \graphicspath{{Chapter3/Figs/Vector/}{Chapter3/Figs/}}
+    \graphicspath{{Chapter3/Figs/}{Chapter3/Figs/}}
 \fi
 
 \section{Estudio de tecnologías}
@@ -255,5 +255,138 @@ hacer el informe y se configuró para las propias necesidades (13).
 Además, se hizo un índice tentativo que sirve como guía para el desarrollo del informe (14), 
 se creó el repositorio en Github para el informe (15), y por último se comenzó la escritura del
 capítulo 1 (una escritura a modo de borrador) (16).
+
+
+\subsection{Semana 5}
+Durante esta semana se comenzó con trabajo relacionado al desarrollo de la app. Lo que se hizo fue
+instalar NVM junto con la versión 10LTS de Node.js (21), hacer el set up del editor de código elegido
+para trabajar (22), instalar los módulos necesarios para llevar adelante el proyecto con NPM (23),
+se escribió un contrato de prueba en la plataforma Remix para comprobar que funcionase según lo
+debido (26) y además se la cuenta en Infura.io para obtener la access key (27).
+
+\begin{figure}[htbp!] 
+\centering    
+\includegraphics[width=0.8\textwidth]{contract-test}
+\caption[contracttest]{Contrato sencillo con el único fin de probar Remix. (26)}
+\label{fig:contract-test}
+\end{figure}
+
+\begin{figure}[htbp!] 
+\centering    
+\includegraphics[width=0.8\textwidth]{infura-key}
+\caption[infurakey]{Sección de la cuenta de Infura donde podemos obtener la access key. (27)}
+\label{fig:infura-key}
+\end{figure}
+
+\subsection{Semana 6}
+Se trabajó en el capítulo 2 del informe (17). Se creó el contrato Project en el IDE Remix
+utilizando una versión de pragma solidity >=0.4.22 <0.6.0 y la versión de compilador
+0.5.1+commit.c8a2cb62.Emscripten.clang (29). Se creó también el contrato ProjectBuilder con las 
+mismas versiones utilizadas en el contrato Project (30).
+
+En este punto del desarrollo debe decirse que ambos contratos compilan y se comportan correctamente
+siendo utilizados en la plataforma Remix.
+
+\subsection{Semana 7}
+Durante esta semana se trabajó sobre los capítulos 1 y 2 del informe. Además, fue durante esta
+semana donde comenzaron los problemas con las versiones de Node, Solidity, compiladores y librerías
+utilizadas.
+
+Como se dijo antes, durante la semana 6 se crearon los contratos Project y ProjectBuilder. Al 
+comienzo de la semana 7 se comenzó la tarea de escribir un script de Node para poder compilar
+los contratos con la librería \textit{solc v0.5.2} antes de deployarlos a la red (31). Luego de 
+algunas horas investigando en la documentación de la librería y haciendo pruebas, logré compilar
+lo que a simple vista parecía lo correcto para luego ser deployado a la red Rinkeby.
+
+Teniendo el script compilando los contratos, se procedió a crear el script en Node para deployar
+éstos a la red Rinkeby con la librería \textit{web3 v1.0.0-beta.38}. El script es sencillo, consta
+de unas diez líneas de código pero sin embargo aquí es donde me topé con una pared de 
+incompatibilidades. Detecté que el stack que la causaba eran las mencionadas versiones de 
+\textit{solc} y \textit{web3} sumadas a Node v10. En los siguientes dos gráficos se puede ver
+cómo el deploy entraba en un loop infinito contra la API de Infura, logrando llegar a más de mil
+quinientos llamados al método \textit{eth\_getTransactionReceipt}. La llamada a este método es 
+crucial debido a que en la respuesta (que nunca se pudo obtener correctamente) nos será devuelta
+la dirección donde se deployó el contrato. Esta dirección le dirá luego a Node y React dónde tienen
+que ir a buscar los métodos para ejecutar.
+
+\begin{figure}[htbp!] 
+\centering    
+\includegraphics[width=0.8\textwidth]{infura-calls-1}
+\caption[infuracalls1]{Se puede ver que entre las 16 y 17 horas (a la derecha) se produjeron un aproximado de 1760 llamados a la API de Infura.}
+\label{fig:infura-calls-1}
+\end{figure}
+
+\begin{figure}[htbp!] 
+\centering    
+\includegraphics[width=0.8\textwidth]{infura-calls-2}
+\caption[infuracalls2]{Se ve específicamente al método que se estaba llamando de la API.}
+\label{fig:infura-calls-2}
+\end{figure}
+
+\begin{figure}[htbp!] 
+\centering    
+\includegraphics[width=0.8\textwidth]{infura-calls-3}
+\caption[infuracalls3]{En el gráfico se ve el pico de actividad en la API cuando estaba sucediendo el bug del loop infinito.}
+\label{fig:infura-calls-3}
+\end{figure}
+
+
+\subsection{Semana 8}
+Durante esta semana se terminaron de escribir las primeras versiones de los capítulos 1 y 2
+del informe y a su vez se comenzó a escribir el capítulo 3. Además, se hicieron diversas pruebas 
+que llevaron más de 15 horas combinando versiones de Node, solc, web3, pragma solidity y del
+compilador solidity para dar con la combinación definitiva para llevar adelante la app (28).
+
+Las versiones finales que se encontraron 100\% compatibles y estables y que serán utilizadas para
+todo el proyecto son:
+
+\begin{itemize}
+	\item Node v8.11.4
+	\item Pragma Solidity \^0.4.17;
+	\item Compiler (solo en Remix) 0.4.19+commit.c4cbbb05.Emscripten.clang
+	\item Solc 0.4.19
+	\item Web3 1.0.0-beta.26
+\end{itemize}
+
+\begin{figure}[htbp!] 
+\centering    
+\includegraphics[width=0.9\textwidth]{success-deploy}
+\caption[successdeploy]{Comandos para compilar y deployar funcionando correctamente. Se puede ver que cuando el contrato es deployado, se nos devuelve la dirección donde ha sido deployado.}
+\label{fig:success-deploy}
+\end{figure}
+
+\subsection{Semana 9}
+Teniendo seleccionadas las versiones estables del ecosistema de la app, se procedió a escribir
+el código encargado de consumir los métodos de los contratos Project y ProjectBuilder (34).
+Se escribió el código para conectarse a los contratos a través de web3 (35). Se probaron con éxito
+las dos tareas previas.
+
+Se hizo el set up completo del entorno front end con React, React Router, Webpack y Babel (36).
+
+Se hicieron retoques en los capítulos 1 y 2 del informe y se continuó trabajando sobre el capítulo
+3.
+
+Se hizo el componente Index en React, el cual a través de web3 obtiene y muestra todos los
+proyectos creados en la dirección que se le haya configurado (37).
+
+\subsection{Semana 10}
+Esta semana fue intensa en cuanto a desarrollo del front end, se investigó sobre buenas prácticas
+en React y se pudieron hacer los componentes correspondientes a los tickets 39, 40, 41, 42, 43
+y 44 (únicamente el HTML y Javascript, restando para la semana siguiente el CSS). En este punto
+ya se puede decir que tenemos una aplicación completamente funcional, todos los componentes del 
+front end desencadenan las acciones correspondientes para conectarse con los contratos y recibir
+o enviar información. También el back end se encuentra completamente funcional, todos los comandos
+creados funcionan correctamente. 
+
+Se hicieron más retoques en los capítulos 1 y 2, también se añadieron imágenes.
+
+Resta agregar los estilos a los componentes.
+
+\subsection{Semana 11}
+Durante esta semana se agregaron los estilos CSS a la aplicación, específicamente a los componentes
+relacionados a los tickets 39, 40, 41, 42, 43 y 44. 
+
+Se actualizó el capítulo 3 del informe hasta la semana 11 inclusive.
+
 
 \subsection{...Semana N}
