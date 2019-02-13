@@ -818,7 +818,7 @@ wish to left align your text}
 \newcommand{\subtitle}[1]{\renewcommand{\@subtitle}{#1}}
 
 % The year and term the degree will be officially conferred
-\newcommand{\@degreedate}{Septiembre 2018}
+\newcommand{\@degreedate}{Octubre 2018}
 \newcommand{\degreedate}[1]{\renewcommand{\@degreedate}{#1}}
 
 % The full (unabbreviated) name of the degree
