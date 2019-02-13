@@ -1,0 +1,55 @@
+%!TEX root = ../thesis.tex
+%*******************************************************************************
+%****************************** Fifth Chapter *********************************
+%*******************************************************************************
+
+\chapter{Conclusión}
+
+\ifpdf
+    \graphicspath{{Chapter5/Figs/}{Chapter5/Figs/PDF/}{Chapter5/Figs/}}
+\else
+    \graphicspath{{Chapter5/Figs/}{Chapter5/Figs/}}
+\fi
+
+
+\section{Resultados}
+Se completó el desarrollo en un tiempo aceptable y cumpliendo los objetivos personales propuestos
+tanto en la aplicación desarrollada como en el presente informe. Se incorporaron nuevas tecnologías
+como blockchain, Ethereum y Solidity. También se profundizaron otras como Node y React, esta última
+particularmente.
+
+Gracias al hincapié de estudiar e investigar las nuevas tecnologías elegidas para el proyecto, se
+comenzó a trabajar en el código con una cierta confianza conociendo de manera sólida todos los
+procesos que estaban pasando detrás de la implementación del código.
+
+Considero un éxito el presente desarrollo debido a la gran cantidad de nuevo conocimiento
+incorporado en tecnologías que se encuentran en auge y por el hecho de haberlo plasmado en una app
+100\% funcional.
+
+
+\subsection{Posibilidades con este informe como punto de partida}
+En la presente sección se enumerarán algunas opciones viables en caso de que alguien decida tomar
+como punto de partida este informe para su tesina. Un punto importante es que destaco que las
+opciones presentadas son altamente recomendadas para los alumnos que no posean experiencia laboral 
+o que recién hayan comenzado su carrera profesional.
+
+\begin{itemize}
+	\item Actualizar Node y todas las dependencias utilizadas a su última versión estable. Esto
+	obligará también a actualizar el código del contrato Solidity y los scripts de compilación y
+	deploy. Actualizar dependencias y código acorde es una práctica común en el ámbito laboral real
+	y muchas veces resulta ser excesivamente complejo llevarlo a cabo por todas las consideraciones
+	que	se deben tener en cuenta respecto al código en producción. 
+	
+	\item Desarrollar dentro de la app proyectada un sistema de usuarios, donde para acceder a la
+	app el usuario deba registrarse y loguearse (en favor de esto y de las prácticas comunes en el
+	mercado laboral será agregar social login). A cada usuario le serán añadidas sus wallets y al
+	momento de transaccionar se deberá asegurar que el wallet logueado en Metamask coincida con
+	alguno de los adjuntos al usuario. A su vez, relacionar también los proyectos con los usuarios,
+	donde los proyectos tendrán un usuario como owner/responsable (al igual que el contrato ahora
+	mismo) y los usuarios tendrán un registro de los proyectos que participan como backers y los
+	payments que aprueban o desaprueban. Queda a elección si usar una base de datos SQL o NoSQL.
+	
+	\item Investigar y desarrollar desde el punto de vista de la inversión en criptomonedas debido
+	a que en el presente informe se ha indicado que no se hablaría en absoluto sobre inversiones.
+
+\end{itemize}
