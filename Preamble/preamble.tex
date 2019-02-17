@@ -113,19 +113,23 @@
 %\usepackage{cleveref} %Referencing without need to explicitly state fig /table
 
 % Add `custombib' in the document class option to use this section
-\ifuseCustomBib
-   \RequirePackage[square, sort, numbers, authoryear]{natbib} % CustomBib
+%\ifuseCustomBib
+%   \RequirePackage[square, sort, numbers, authoryear]{natbib} % CustomBib
 
 % If you would like to use biblatex for your reference management, as opposed to the default `natbibpackage` pass the option `custombib` in the document class. Comment out the previous line to make sure you don't load the natbib package. Uncomment the following lines and specify the location of references.bib file
 
 %\RequirePackage[backend=biber, style=numeric-comp, citestyle=numeric, sorting=nty, natbib=true]{biblatex}
 %\bibliography{References/references} %Location of references.bib only for biblatex
 
-\fi
+%\fi
 
 % changes the default name `Bibliography` -> `References'
-\renewcommand{\bibname}{References}
+\renewcommand{\bibname}{Referencias}
 
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\section*}{\section}{}{}
+
+\usepackage[nottoc]{tocbibind}
 
 % ******************************************************************************
 % ************************* User Defined Commands ******************************
@@ -133,8 +137,8 @@
 
 % *********** To change the name of Table of Contents / LOF and LOT ************
 
-%\renewcommand{\contentsname}{My Table of Contents}
-%\renewcommand{\listfigurename}{My List of Figures}
+\renewcommand{\contentsname}{Índice}
+\renewcommand{\listfigurename}{Figuras}
 %\renewcommand{\listtablename}{My List of Tables}
 
 

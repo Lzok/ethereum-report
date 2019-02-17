@@ -187,6 +187,29 @@ bastante más estable en precio que el bitcoin.
 \label{fig:eth-btc-2018}
 \end{figure}
 
+
+\subsection{Minado de bloques}
+
+La palabra minería se origina en el contexto de la analogía del oro para las monedas criptográficas. El oro o los metales preciosos son escasos, al igual que los tokens digitales, y la única manera de aumentar el volumen total es a través de la minería. Esto es apropiado en la medida en que también en Ethereum, el único modo de emisión posterior al lanzamiento es a través de la minería. Sin embargo, a diferencia de estos ejemplos, la minería es también la forma de proteger la red creando, verificando, publicando y propagando bloques en la cadena de bloques.
+
+Ethereum Frontier, como todas las tecnologías blockchain, utiliza un modelo de seguridad basado en incentivos. El consenso se basa en elegir el bloque con la mayor dificultad total. Los mineros producen bloques que los demás comprueban para comprobar su validez. Entre otros criterios de buena formación, un bloque sólo es válido si contiene el \textbf{Proof of Work} (PoW) de una determinada dificultad. Nótese que en Ethereum 1.1, esto probablemente será reemplazado por un
+\textbf{Proof of Stake} model.
+
+El algoritmo Proof of Work utilizado se llama Ethash (una versión modificada de Dagger-Hashimoto) e implica encontrar un nonce (valor random en el bloque que se usa para satisfacer el PoW) input al algoritmo para que el resultado esté por debajo de un cierto umbral dependiendo de la dificultad. El punto en los algoritmos PoW es que no hay mejor estrategia para encontrar tal cosa que enumerar las posibilidades, mientras que la verificación de una solución es trivial y barata. Si las salidas tienen una distribución uniforme, entonces podemos garantizar que en promedio el tiempo necesario para encontrar un nonce depende del umbral de dificultad, haciendo posible controlar el tiempo de encontrar un nuevo bloque con sólo manipular la dificultad.
+
+La dificultad se ajusta dinámicamente de modo que en promedio un bloque es producido por toda la red cada 12 segundos (es decir, 12 s de tiempo de bloque). Este "latido" básicamente marca la sincronización del estado del sistema y garantiza que mantener un fork (para permitir el doble gasto) o reescribir la historia es imposible a menos que el atacante posea más de la mitad de la potencia minera de la red (el llamado ataque del 51%).
+
+Cualquier nodo que participe en la red puede ser un minero y sus ingresos esperados de la minería serán directamente proporcionales a su potencia minera (relativa) o al hashrate, es decir, el número de noces intentados por segundo normalizado por el hashrate total de la red.
+
+Ethash PoW es duro en memoria, haciéndolo básicamente resistente a ASIC. Esto significa que para calcular el PoW es necesario seleccionar subconjuntos de un recurso fijo que dependen de la cabecera del bloque y de la unidad de medida. Este recurso (unos pocos datos de tamaño de gigabytes) se llama DAG (gráfico acíclico dirigido). El DAG es totalmente diferente cada 30000 bloques (una ventana de 100 horas, llamada epoch) y tarda un tiempo en generarse. Dado que el DAG sólo depende de la altura del bloque, puede ser pre-generado, pero si no lo es, el cliente necesita esperar al final de este proceso para producir un bloque. Hasta que los clientes no precacheen los DAGs con antelación, la red puede experimentar un retraso de bloqueo masivo en cada transición de epoch. Tenga en cuenta que no es necesario generar el DAG para verificar el PoW, lo que esencialmente permite la verificación con una CPU baja y una memoria pequeña.
+
+\begin{figure}[H] 
+\centering    
+\includegraphics[width=0.9\textwidth]{mining-time}
+\caption[mining-time]{Tiempo promedio que tarda en minarse un bloque en la red Ethereum. El cuadro presenta información histórica de este promedio.}
+\label{fig:mining-time}
+\end{figure}
+
 \subsection{Protocolos}
 Por definición, un protocolo en informática y telecomunicaciones es un sistema de normas que
 regulan la comunicación entre dos o más sistemas que se transmiten información a través de 

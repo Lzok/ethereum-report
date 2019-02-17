@@ -1,7 +1,7 @@
 % ******************************* PhD Thesis Template **************************
 % Please have a look at the README.md file for info on how to use the template
 
-\documentclass[a4paper,12pt,times,numbered,print,index]{Classes/PhDThesisPSnPDF}
+\documentclass[a4paper,12pt,times,print,index]{Classes/PhDThesisPSnPDF}
 
 % ******************************************************************************
 % ******************************* Class Options ********************************
@@ -113,18 +113,17 @@
 
 \maketitle
 
-\include{Dedication/dedication}
-\include{Declaration/declaration}
-\include{Acknowledgement/acknowledgement}
+%\include{Dedication/dedication}
+%\include{Declaration/declaration}
+%\include{Acknowledgement/acknowledgement}
 \include{Abstract/abstract}
-
 % *********************** Adding TOC and List of Figures ***********************
 
 \tableofcontents
 
 \listoffigures
 
-\listoftables
+%\listoftables
 
 % \printnomenclature[space] space can be set as 2em between symbol and description
 %\printnomenclature[3em]
@@ -142,7 +141,25 @@
 %\include{Chapter6/chapter6}
 %\include{Chapter7/chapter7}
 
-
+\begin{thebibliography}{40}
+	\bibitem{bitcoinpaper} 
+		Satoshi Nakamoto: Bitcoin Paper
+		\\\texttt{https://www.bitcoin.com/bitcoin.pdf}
+	
+		Recuperado 08-02-2019
+	
+	\bibitem{ethereumpaper}
+		Vitalik Buterin \& Maintainers: Ethereum White Paper
+		\\\texttt{https://github.com/ethereum/wiki/wiki/White-Paper}
+		
+		Recuperado 08-02-2019
+		
+	\bibitem{gettinguptospeedeth}
+		Matt Condon: Getting up to speed on Ethereum
+		\\\texttt{https://medium.com/@mattcondon/getting-up-to-speed-on-ethereum-63ed28821bbe}
+		
+		Recuperado 08-02-2019
+\end{thebibliography}
 
 % ********************************** Back Matter *******************************
 % Backmatter should be commented out, if you are using appendices after References
@@ -156,9 +173,9 @@
 % Reference styles: http://sites.stat.psu.edu/~surajit/present/bib.htm
 
 \bibliographystyle{apalike}
-%\bibliographystyle{unsrt} % Use for unsorted references  
-%\bibliographystyle{plainnat} % use this to have URLs listed in References
-\cleardoublepage
+\bibliographystyle{unsrt} % Use for unsorted references  
+\bibliographystyle{plainnat} % use this to have URLs listed in References
+%\cleardoublepage
 \bibliography{References/references} % Path to your References.bib file
 
 
